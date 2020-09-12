@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title class="titulo">Conversor de Temperatura</title>
+  <style type="text/css">
+    :root {
+      font-family: "Times New Roman", serif;
+    }
+
+    body {
+      background-color: #e0e0eb;
+    }
+
+    .title {
+      text-align: center;
+      color: #600080;
+      font-size: 60px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .table {
+      display: block;
+      margin: 5px auto;
+      max-width: 100%;
+      border: 3px solid #9900cc;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .forms {
+      text-align: center;
+      color: #400355;
+      font-size: 25px;
+      padding-top: 0;
+    }
+
+    .campo {
+      margin-bottom: 0px;
+      padding: 5px;
+      border-radius: 7px;
+    }
+
+    .unit {
+      padding: 3px;
+      padding-bottom: 0;
+      border-radius: 7px;
+    }
+
+    .converter {
+      margin-top: 1px;
+      padding: 15px;
+      border-radius: 20px;
+      font-size: 25px;
+      color: #e0e0eb;
+      background-color: #400355;
+      border: 1px solid;
+    }
+
+    .converter:hover {
+      background-color: #600080;
+    }
+
+    .box-answer {
+      border: 1px solid black;
+      color: black;
+      margin-left: 20px;
+      padding: 0 200px 100px 200px;
+    }
+
+    .flex-box-answer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .validate {
+      color: red;
+      font-size: 20px;
+      font-style: italic;
+      padding-left: 20px;
+    }
+
+    .resposta-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  </style>
+  <script type="text/javascript">
+    function Convert() {
+      var x = document.getElementById("campo").value;
+      try {
+        if (x == "") {
+          throw "O campo não pode ficar vazio!";
+        }
+        if (isNaN(x)) {
+          throw "O campo só aceita números!";
+        }
+        if (x.substr(0,1) == " ") {
+          throw "Não pode ter espaços em branco antes dos dígitos!";
+        }
+        if (x == null) {
+          throw "Valor nulo!";
+        }
+        var litrosKm = x;
+        var quiLi = x;
+        var miGal = x * 2.35;
+        document.getElementById("validate").innerHTML = " ";
+        document.getElementById("resposta").innerHTML =
+        "<br>" + miGal + " mpg" + "<br>" + litrosKm + " km/l" + "<br>" + quiLi + " l/km";
+      } catch (err) {
+        document.getElementById("campo").focus();
+        document.getElementById("validate").innerHTML = err;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h2 class="title">Combustível</h2>
+  <img class="table" src="fuel2.png" width="250px" height="250px" />
+  <div class="forms">
+    <form>
+      <p class="nome">Digite o valor a ser convertido</p>
+      <div class="resposta-box">
+        <input type="text" class="campo" id="campo" required />
+        <div id="validate" class=" validate"></div>
+      </div>
+      <br />
+      <input type="button" class="converter" value="CONVERTER" onclick="Convert()" />
+    </form>
+
+    <div class="flex-box-answer">
+      Resposta:
+      <div class="box-answer">
+        <span id="resposta" class="resposta"></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
